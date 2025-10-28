@@ -35,7 +35,7 @@ export default function EmployeeList({ reloadSignal }) {
     <div style={{ maxWidth: 900, margin: '2rem auto', fontFamily: 'sans-serif' }}>
       <h2>Employees</h2>
       <button onClick={load} disabled={loading}>
-        {loading ? 'Loading…' : 'Load Employees'}
+        {loading ? 'Loading…' : 'Fetch Employees'}
       </button>
 
       {err && <p style={{ color: 'crimson' }}>{err}</p>}
@@ -49,7 +49,8 @@ export default function EmployeeList({ reloadSignal }) {
               <th style={{ borderBottom: '1px solid #ddd', textAlign: 'left', padding: '8px' }}>Department</th>
               <th style={{ borderBottom: '1px solid #ddd', textAlign: 'left', padding: '8px' }}>Address</th>
               <th style={{ borderBottom: '1px solid #ddd', textAlign: 'left', padding: '8px' }}>Age</th>
-              <th style={{ borderBottom: '1px solid #ddd', textAlign: 'left', padding: '8px' }}>Actions</th>
+              <th style={{ borderBottom: '1px solid #ddd', textAlign: 'left', padding: '8px' }}>Gender</th>
+               <th style={{ borderBottom: '1px solid #ddd', textAlign: 'left', padding: '8px' }}>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -60,15 +61,17 @@ export default function EmployeeList({ reloadSignal }) {
                 <td style={{ borderBottom: '1px solid #f2f2f2', padding: '8px' }}>{e.department}</td>
                 <td style={{ borderBottom: '1px solid #f2f2f2', padding: '8px' }}>{e.address}</td>
                 <td style={{ borderBottom: '1px solid #f2f2f2', padding: '8px' }}>{e.age}</td>
+                <td style={{ borderBottom: '1px solid #f2f2f2', padding: '8px' }}>{e.gender}</td>
                 <td style={{ borderBottom: '1px solid #f2f2f2', padding: '8px' }}>
                   <button
                     onClick={() => onDelete(e.id)}
                     disabled={deletingId === e.id}
-                    title="Delete employee"
+
                   >
                     {deletingId === e.id ? 'Deleting…' : 'Delete'}
                   </button>
                 </td>
+
               </tr>
             ))}
           </tbody>

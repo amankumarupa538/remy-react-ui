@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { createEmployee } from './api';
 
 export default function EmployeeForm({ onCreated }) {
-  const [form, setForm] = useState({ name: '', email: '', department: '' });
+  const [form, setForm] = useState({ name: '', email: '', department: '', age: '', gender: '' });
   const [saving, setSaving] = useState(false);
   const [err, setErr] = useState('');
 
@@ -18,7 +18,7 @@ export default function EmployeeForm({ onCreated }) {
     setSaving(true);
     try {
       await createEmployee(form);
-      setForm({ name: '', address: '', department: '' });
+      setForm({ name: '', address: '', department: '', age: '', gender: '' });
       onCreated?.(); // ask parent to refresh list
     } catch (ex) {
       setErr(ex.message || 'Failed to save employee');
@@ -45,6 +45,10 @@ export default function EmployeeForm({ onCreated }) {
       <input
          name="age" placeholder="Age"
          value={form.age} onChange={update}
+      />
+      <input
+      name="gender" placeholder="Gender"
+      value={form.gender} onChange={update}
       />
       {err && <div style={{ color: 'crimson' }}>{err}</div>}
       <button type="submit" disabled={saving}>{saving ? 'Saving…' : 'Save Employee'}</button>
